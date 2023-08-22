@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 7153830953021221577}
   - component: {fileID: 2269668604428821187}
   - component: {fileID: 7526731767051504389}
+  - component: {fileID: 4074562323367759545}
   - component: {fileID: 2096461889810065273}
   - component: {fileID: 8461121083874573901}
+  - component: {fileID: 7235394559771582615}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -36,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5707840765477561854
 MeshFilter:
@@ -155,6 +157,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustSpeed: 2000
   rotationSpeed: 100
+--- !u!114 &4074562323367759545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d293313d0dc34171a00babb8910ecf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &2096461889810065273
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,7 +178,7 @@ Rigidbody:
   m_GameObject: {fileID: 2592979535304191236}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -180,7 +194,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!82 &8461121083874573901
 AudioSource:
@@ -193,7 +207,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 28ba30902d8984972be95f3e076c923a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -278,3 +292,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7235394559771582615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b234cf42c4db4f54bdac1618e022cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
