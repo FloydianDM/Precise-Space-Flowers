@@ -3,9 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{   
     [SerializeField] AudioClip levelClearAudio;
     [SerializeField] AudioClip crashAudio;
+
+    [SerializeField] ParticleSystem levelClearParticle;
+    [SerializeField] ParticleSystem crashParticle;
 
     private int _currentSceneIndex;
     private Movement _movement;
@@ -21,8 +24,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ReloadLevel()
     {
-        // todo add particle effects
-
+        crashParticle.Play();
         _audioSource.PlayOneShot(crashAudio);
 
         _movement.enabled = false;
@@ -36,8 +38,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator LoadNextLevel()
     {
-        // todo add particle effects
-
+        levelClearParticle.Play();
         _audioSource.PlayOneShot(levelClearAudio);
 
         _movement.enabled = false;
