@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -15,13 +14,12 @@ public class CollisionHandler : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Finish":
-                Debug.Log("Finish");
-                _gameManager.LoadNextLevel();
+                StartCoroutine(_gameManager.LoadNextLevel());
                 break;
             case "Friendly":
                 break;
             default:
-                _gameManager.ReloadLevel();
+                StartCoroutine(_gameManager.ReloadLevel());
                 break;
         }
     }

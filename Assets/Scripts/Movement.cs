@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float thrustSpeed = 100f;
     [SerializeField] private float rotationSpeed = 20f;
+    [SerializeField] AudioClip rocketBoostAudio;
 
     Rigidbody _rb;
     AudioSource _audioSource;
@@ -32,7 +31,7 @@ public class Movement : MonoBehaviour
 
             if (!_audioSource.isPlaying)
             {
-                _audioSource.Play();
+                _audioSource.PlayOneShot(rocketBoostAudio);
             }
         }
         else
