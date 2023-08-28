@@ -9,8 +9,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] float bulletSpeed = 2f;
     [SerializeField] AudioClip fireSound;
     
-    float _bulletLifetime = 20f;
-    float _timeToNextBullet = 0.5f;
+    readonly float _bulletLifetime = 10f;
+    readonly float _timeToNextBullet = 0.5f;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class Shooter : MonoBehaviour
             if (rbBullet != null)
             {
                 rbBullet.AddForce(bulletSpeed * Vector3.left, ForceMode.Acceleration);
+                bulletInstance.transform.Translate(-bulletSpeed * Time.deltaTime, 0, 0);
             }
 
             Destroy(bulletInstance, _bulletLifetime);
