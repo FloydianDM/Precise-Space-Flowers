@@ -5,4 +5,4 @@ A simple 3d side-scroller platformer themed as a journey of a lost rocket ship i
 # Future Plans
 Full implementation of new Unity Input System.
 New levels with different game mechanics. (Fuel system, boosts etc.)
-New and modern GUI.
+New and modern HUD.
