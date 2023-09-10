@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class QuitApplication : MonoBehaviour
+namespace PreciseSpaceFlowers
 {
-    private void OnQuit(InputValue input)
+    public class QuitApplication : MonoBehaviour
     {
-        if (input.isPressed)
+        private void OnQuit(InputValue input)
         {
-            Debug.Log("Quit");
-            Application.Quit();
+            if (input.isPressed)
+            {
+                Debug.Log("Quit");
+                Application.Quit();
+            }
         }
     }
 }
+
+

@@ -1,33 +1,38 @@
 using UnityEngine;
 
-public class CollisionHandler : MonoBehaviour
+namespace PreciseSpaceFlowers
 {
-    GameManager _gameManager;
-    Movement _movement;
-
-    private void Awake()
+    public class CollisionHandler : MonoBehaviour
     {
-        _gameManager = FindObjectOfType<GameManager>();
-        _movement = FindObjectOfType<Movement>();
-    }
+        GameManager _gameManager;
+        Movement _movement;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(!_movement.isCollisionEnabled)
+        private void Awake()
         {
-            return;
+            _gameManager = FindObjectOfType<GameManager>();
+            _movement = FindObjectOfType<Movement>();
         }
 
-        switch (collision.gameObject.tag)
+        private void OnCollisionEnter(Collision collision)
         {
-            case "Finish":
-                StartCoroutine(_gameManager.LoadNextLevel());
-                break;
-            case "Friendly":
-                break;
-            default:
-                StartCoroutine(_gameManager.ReloadLevel());
-                break;
+            if(!_movement.isCollisionEnabled)
+            {
+                return;
+            }
+
+            switch (collision.gameObject.tag)
+            {
+                case "Finish":
+                    StartCoroutine(_gameManager.LoadNextLevel());
+                    break;
+                case "Friendly":
+                    break;
+                default:
+                    StartCoroutine(_gameManager.ReloadLevel());
+                    break;
+            }
         }
-    }
+    } 
 }
+
+

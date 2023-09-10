@@ -93,14 +93,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2820557398817512193}
   - component: {fileID: 5707840765477561854}
+  - component: {fileID: 2096461889810065273}
+  - component: {fileID: 8329286703152802676}
+  - component: {fileID: 8461121083874573901}
   - component: {fileID: 2269668604428821187}
   - component: {fileID: 7526731767051504389}
   - component: {fileID: 4074562323367759545}
-  - component: {fileID: 2096461889810065273}
-  - component: {fileID: 8461121083874573901}
   - component: {fileID: 7235394559771582615}
-  - component: {fileID: 8329286703152802676}
   - component: {fileID: 6796774621854096370}
+  - component: {fileID: 8424781448775126644}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -132,7 +133,7 @@ Transform:
   - {fileID: 1547773810016482816}
   - {fileID: 2061892275501082741}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5707840765477561854
 MeshFilter:
@@ -142,67 +143,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2592979535304191236}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2269668604428821187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592979535304191236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b1746622c0da4473ea25f0d4a20816b3, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &7526731767051504389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592979535304191236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f52feedd23bd4e8fba85484fc064ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrustSpeed: 2000
-  rotationSpeed: 100
-  rocketBoostAudio: {fileID: 8300000, guid: 1a9156387c0f943528b4a8a9a0c51270, type: 3}
-  jetParticles: {fileID: 7277157147348828745}
-  leftSideThrusterParticles: {fileID: 7228340810625102160}
-  rightSideThrusterParticles: {fileID: 1730536897252903461}
-  isCollisionEnabled: 1
---- !u!114 &4074562323367759545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592979535304191236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d293313d0dc34171a00babb8910ecf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2096461889810065273
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -230,6 +170,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
+--- !u!65 &8329286703152802676
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4416046, y: 4.9303875, z: 2.3306885}
+  m_Center: {x: 0.043102264, y: 1.5257998, z: -0.19743073}
 --- !u!82 &8461121083874573901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -326,6 +287,67 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2269668604428821187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b1746622c0da4473ea25f0d4a20816b3, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &7526731767051504389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f52feedd23bd4e8fba85484fc064ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustSpeed: 2000
+  rotationSpeed: 100
+  rocketBoostAudio: {fileID: 8300000, guid: 1a9156387c0f943528b4a8a9a0c51270, type: 3}
+  jetParticles: {fileID: 7277157147348828745}
+  leftSideThrusterParticles: {fileID: 7228340810625102160}
+  rightSideThrusterParticles: {fileID: 1730536897252903461}
+  isCollisionEnabled: 1
+--- !u!114 &4074562323367759545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d293313d0dc34171a00babb8910ecf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7235394559771582615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,27 +364,8 @@ MonoBehaviour:
   crashAudio: {fileID: 8300000, guid: 5474ab27b417d4f1ca38aa962d4e82fa, type: 3}
   levelClearParticle: {fileID: 150703735991316832}
   crashParticle: {fileID: 6277172682186910114}
---- !u!65 &8329286703152802676
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592979535304191236}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.4416046, y: 4.9303875, z: 2.3306885}
-  m_Center: {x: 0.043102264, y: 1.5257998, z: -0.19743073}
+  reloadLevelScore: -10
+  nextLevelScore: 50
 --- !u!114 &6796774621854096370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +376,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7c43c0399f6143f896654bed1e81122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8424781448775126644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592979535304191236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bced52d329347a8b422039149f7ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2800889868570107254
