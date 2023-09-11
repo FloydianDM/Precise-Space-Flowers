@@ -22,12 +22,14 @@ namespace PreciseSpaceFlowers
         private Movement _movement;
         private AudioSource _audioSource;
         private Score _scorer;
+        private Health _healthKeeper;
         
         void Start()
         {
             _movement = GetComponent<Movement>();
             _audioSource = GetComponent<AudioSource>();
-            _scorer = GetComponent<Score>();
+            _scorer = FindObjectOfType<Score>();
+            _healthKeeper = FindObjectOfType<Health>();
             _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         }
     
@@ -35,6 +37,8 @@ namespace PreciseSpaceFlowers
         {
             crashParticle.Play();
             _audioSource.PlayOneShot(crashAudio);
+            _scorer.AddScore(reloadLevelScore);
+            _healthKeeper.LoseHealth();
     
             _movement.enabled = false;
     
@@ -42,7 +46,7 @@ namespace PreciseSpaceFlowers
     
             _audioSource.Stop();
             _movement.enabled = true;
-            _scorer.AddScore(reloadLevelScore);
+            
             SceneManager.LoadScene(_currentSceneIndex);
         }
     
@@ -50,6 +54,7 @@ namespace PreciseSpaceFlowers
         {
             levelClearParticle.Play();
             _audioSource.PlayOneShot(levelClearAudio);
+            _scorer.AddScore(nextLevelScore);
     
             _movement.enabled = false;
     
@@ -57,7 +62,7 @@ namespace PreciseSpaceFlowers
     
             _audioSource.Stop();
             _movement.enabled = true;
-            _scorer.AddScore(nextLevelScore);
+            
             if (_currentSceneIndex +1 == SceneManager.sceneCountInBuildSettings)
             {
                 SceneManager.LoadScene(0);
@@ -67,6 +72,11 @@ namespace PreciseSpaceFlowers
                 _currentSceneIndex++;
                 SceneManager.LoadScene(_currentSceneIndex);
             } 
+        }
+
+        private void CheckHealth()
+        {
+            // if health reduces 0, play Game Over scene.
         }
     }
 }

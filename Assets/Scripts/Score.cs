@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,25 +8,35 @@ namespace PreciseSpaceFlowers
     public class Score : MonoBehaviour
     {
         private int _score;
+        private static Score _instance;
 
-        public void AddScore(int addedScore)
+        private void Awake()
         {
-            if (addedScore < 0)
+            ManageSingleton();
+        }
+
+        private void ManageSingleton()
+        {
+            if (_instance != null)
             {
-                if (_score < addedScore)
-                {
-                    _score = 0;
-                }
-                else
-                {
-                    _score += addedScore;
-                }
+                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
             else
             {
-                _score += addedScore;
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
             }
-        
+        }
+
+        public int GetScore()
+        {
+            return _score;
+        }
+
+        public void AddScore(int addedScore)
+        {
+            _score += addedScore;
         }
     }
 }
