@@ -23,7 +23,7 @@ namespace PreciseSpaceFlowers
         private AudioSource _audioSource;
         private Score _scorer;
         private Health _healthKeeper;
-        private bool _isTransitioning; // ensures the routine works only once per collision
+        public bool isTransitioning; // controls the transition between scenes
         
         void Start()
         {
@@ -36,60 +36,47 @@ namespace PreciseSpaceFlowers
     
         public IEnumerator ReloadLevel()
         {
-            _isTransitioning = true;
+            crashParticle.Play(); 
+            _audioSource.PlayOneShot(crashAudio);
+            _scorer.AddScore(reloadLevelScore);
+            _healthKeeper.LoseHealth();
+
+            _movement.enabled = false;
+
+            yield return new WaitForSeconds(1);
+
+            _audioSource.Stop();
+            _movement.enabled = true;
+
+            SceneManager.LoadScene(_currentSceneIndex);
             
-            while (_isTransitioning)
-            {
-                crashParticle.Play();
-                _audioSource.PlayOneShot(crashAudio);
-                _scorer.AddScore(reloadLevelScore);
-                _healthKeeper.LoseHealth();
-
-                _movement.enabled = false;
-
-                yield return new WaitForSeconds(1);
-
-                _audioSource.Stop();
-                _movement.enabled = true;
-
-                SceneManager.LoadScene(_currentSceneIndex);
-                break;
-            }
-
-            _isTransitioning = false;
+            isTransitioning = false; // collision between objects are enabled!
         }
     
         public IEnumerator LoadNextLevel()
         {
-            _isTransitioning = true;
+            levelClearParticle.Play(); 
+            _audioSource.PlayOneShot(levelClearAudio);
+            _scorer.AddScore(nextLevelScore); 
             
-            while (_isTransitioning)
-            {
-                levelClearParticle.Play();
-                _audioSource.PlayOneShot(levelClearAudio);
-                _scorer.AddScore(nextLevelScore);
-                
-                _movement.enabled = false;
-
-                yield return new WaitForSeconds(1);
-
-                _audioSource.Stop();
-                _movement.enabled = true;
-
-                if (_currentSceneIndex + 1 == SceneManager.sceneCountInBuildSettings)
-                {
-                    SceneManager.LoadScene(0);
-                }
-                else
-                {
-                    _currentSceneIndex++;
-                    SceneManager.LoadScene(_currentSceneIndex);
-                }
-
-                break;
+            _movement.enabled = false;
+            
+            yield return new WaitForSeconds(1);
+            
+            _audioSource.Stop(); 
+            _movement.enabled = true;
+            
+            if (_currentSceneIndex + 1 == SceneManager.sceneCountInBuildSettings)
+            { 
+                SceneManager.LoadScene(0);
+            }
+            else
+            { 
+                _currentSceneIndex++; 
+                SceneManager.LoadScene(_currentSceneIndex);
             }
 
-            _isTransitioning = false;
+            isTransitioning = false; // collision between objects are enabled!
         }
         
         private void CheckHealth()

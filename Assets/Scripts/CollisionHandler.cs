@@ -15,7 +15,7 @@ namespace PreciseSpaceFlowers
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(!_movement.isCollisionEnabled)
+            if (!_movement.isCollisionEnabled && _gameManager.isTransitioning)
             {
                 return;
             }
@@ -23,11 +23,13 @@ namespace PreciseSpaceFlowers
             switch (collision.gameObject.tag)
             {
                 case "Finish":
+                    _gameManager.isTransitioning = true; // transition starts
                     StartCoroutine(_gameManager.LoadNextLevel());
                     break;
                 case "Friendly":
                     break;
                 default:
+                    _gameManager.isTransitioning = true; // transition starts
                     StartCoroutine(_gameManager.ReloadLevel());
                     break;
             }
