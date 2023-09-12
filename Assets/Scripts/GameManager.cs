@@ -23,6 +23,7 @@ namespace PreciseSpaceFlowers
         private AudioSource _audioSource;
         private Score _scorer;
         private Health _healthKeeper;
+        private bool _isTransitioning; // ensures the routine works only once per collision
         
         void Start()
         {
@@ -35,48 +36,65 @@ namespace PreciseSpaceFlowers
     
         public IEnumerator ReloadLevel()
         {
-            crashParticle.Play();
-            _audioSource.PlayOneShot(crashAudio);
-            _scorer.AddScore(reloadLevelScore);
-            _healthKeeper.LoseHealth();
-    
-            _movement.enabled = false;
-    
-            yield return new WaitForSeconds(1);
-    
-            _audioSource.Stop();
-            _movement.enabled = true;
+            _isTransitioning = true;
             
-            SceneManager.LoadScene(_currentSceneIndex);
+            while (_isTransitioning)
+            {
+                crashParticle.Play();
+                _audioSource.PlayOneShot(crashAudio);
+                _scorer.AddScore(reloadLevelScore);
+                _healthKeeper.LoseHealth();
+
+                _movement.enabled = false;
+
+                yield return new WaitForSeconds(1);
+
+                _audioSource.Stop();
+                _movement.enabled = true;
+
+                SceneManager.LoadScene(_currentSceneIndex);
+                break;
+            }
+
+            _isTransitioning = false;
         }
     
         public IEnumerator LoadNextLevel()
         {
-            levelClearParticle.Play();
-            _audioSource.PlayOneShot(levelClearAudio);
-            _scorer.AddScore(nextLevelScore);
-    
-            _movement.enabled = false;
-    
-            yield return new WaitForSeconds(1);
-    
-            _audioSource.Stop();
-            _movement.enabled = true;
+            _isTransitioning = true;
             
-            if (_currentSceneIndex +1 == SceneManager.sceneCountInBuildSettings)
+            while (_isTransitioning)
             {
-                SceneManager.LoadScene(0);
-            }
-            else
-            {
-                _currentSceneIndex++;
-                SceneManager.LoadScene(_currentSceneIndex);
-            } 
-        }
+                levelClearParticle.Play();
+                _audioSource.PlayOneShot(levelClearAudio);
+                _scorer.AddScore(nextLevelScore);
+                
+                _movement.enabled = false;
 
+                yield return new WaitForSeconds(1);
+
+                _audioSource.Stop();
+                _movement.enabled = true;
+
+                if (_currentSceneIndex + 1 == SceneManager.sceneCountInBuildSettings)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                else
+                {
+                    _currentSceneIndex++;
+                    SceneManager.LoadScene(_currentSceneIndex);
+                }
+
+                break;
+            }
+
+            _isTransitioning = false;
+        }
+        
         private void CheckHealth()
         {
-            // if health reduces 0, play Game Over scene.
+            // if health reduces to 0, play Game Over scene.
         }
     }
 }
